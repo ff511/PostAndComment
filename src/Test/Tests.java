@@ -7,10 +7,10 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class test {
+public class Tests {
 
     private ApplicationContext applicationContext;
-    private Logger log = Logger.getLogger(test.class);
+    private final Logger logger = Logger.getLogger(Tests.class);
 
     @Before
     public void setUp() {
@@ -20,7 +20,7 @@ public class test {
 
     @Test
     public void selectOneUser() {
-        log.debug("start debug");
+        logger.debug("start debug");
         UserMapper userMapper = applicationContext.getBean(UserMapper.class);
         System.out.println(userMapper.selectOneUser("00010"));
     }
