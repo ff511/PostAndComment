@@ -1,30 +1,30 @@
 package com.zzz.mvc.entities;
 
 public class User {
-    private String username;
-    private String password;
+    private String User_id;
+    private String User_name;
 
-    public String getUsername() {
-        return username;
+    public String getUser_id() {
+        return User_id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser_id(String user_id) {
+        User_id = user_id;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUser_name() {
+        return User_name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser_name(String user_name) {
+        User_name = user_name;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                "User_id='" + User_id + '\'' +
+                ", User_name='" + User_name + '\'' +
                 '}';
     }
 }

@@ -22,6 +22,6 @@ public class test {
     public void selectOneUser() {
         log.debug("start debug");
         UserMapper userMapper = applicationContext.getBean(UserMapper.class);
-        System.out.println(userMapper.selectOneUser("0001"));
+        System.out.println(userMapper.selectOneUser("00010"));
     }
 }
