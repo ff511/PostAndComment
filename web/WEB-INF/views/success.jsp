@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: tianzhang
@@ -11,6 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-success to dispatcher
+
 </body>
 </html>
