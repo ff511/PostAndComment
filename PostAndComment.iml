@@ -25,5 +25,6 @@
     <orderEntry type="library" name="Spring-4.3.14.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.28" level="application_server_libraries" />
     <orderEntry type="library" name="Spring MVC-4.3.14.RELEASE" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
