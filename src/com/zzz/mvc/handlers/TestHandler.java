@@ -1,4 +1,4 @@
-package group.zzz.mvc.handlers;
+package com.zzz.mvc.handlers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestHandler {
 
     @RequestMapping("/test")
-    public String test(){
+    public String test() {
         return "success";
     }
 }
