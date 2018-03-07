@@ -21,6 +21,7 @@ public class TestHandler {
                 "com/zzz/mvc/config/Spring/applicationContext.xml");
         UserMapper userMapper = applicationContext.getBean(UserMapper.class);
         User u = userMapper.selectOneUser("00010");
+        System.out.println(u);
         map.put("user", u);
         return "success";
     }

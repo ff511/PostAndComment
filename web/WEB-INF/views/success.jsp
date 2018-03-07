@@ -13,26 +13,6 @@
     <title>show all stuff info</title>
 </head>
 <body>
-<c:if test="${empty requestScope.user}">
-    no user info
-</c:if>
-
-<c:if test="${!empty requestScope.user}">
-    <table>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-
-        </tr>
-
-        <c:forEach items="${requestScope.user}" var="usr">
-            <tr>
-                <td>${usr.User_id}</td>
-                <td>${usr.User_name}</td>
-
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+ ${requestScope.user}
 </body>
 </html>
