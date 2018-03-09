@@ -1,6 +1,6 @@
 package Test;
 
-import com.zzz.mvc.Mappers.UserMapper;
+import com.zzz.mvc.Mappers.AccountMapper;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,13 +15,14 @@ public class Tests {
     @Before
     public void setUp() {
         applicationContext = new ClassPathXmlApplicationContext(
-                "com/zzz/mvc/config/Spring/applicationContext.xml");
+                "com/zzz/mvc/config/Spring/spring-mybatis-dao.xml");
     }
 
     @Test
     public void selectOneUser() {
         logger.debug("start debug");
-        UserMapper userMapper = applicationContext.getBean(UserMapper.class);
-        System.out.println(userMapper.selectOneUser("00010"));
+        AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
+
+        System.out.println(accountMapper.queryAccountInfoById("zzztttztzt@126.com"));
     }
 }

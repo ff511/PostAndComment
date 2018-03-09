@@ -5,8 +5,9 @@
     <typeAliases>
         <package name="com.zzz.mvc.entities"/>
     </typeAliases>
+
     <mappers>
-        <mapper resource="com/zzz/mvc/Mappers/UserMapper.xml"/>
+        <mapper resource="com/zzz/mvc/Mappers/AccountMapper.xml"/>
     </mappers>
 
 </configuration>
