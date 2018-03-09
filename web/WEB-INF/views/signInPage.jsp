@@ -14,11 +14,11 @@
     <title>show all stuff info</title>
 </head>
 <body>
-<form action="/Account/logIn" method="post">
-    email:<input type="text" name="email" /><br/>
-    password: <input type="text" name="password" /><br/>
+<form:form action="/Account/signIn" method="post" modelAttribute="Account">
+    email:<form:input path="account_id"/><br/>
+    password: <form:input path="account_password"/><br/>
     <input type="submit" value="go" />
-</form>
+</form:form>
 <br/>
 <br/>
 <a href="/Account/signUp">sign up here</a>

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<form:form action="/Account/signUp" method="post" modelAttribute="Account">
+<form:form action="/Account/signUp" method="post" modelAttribute="newAccount">
     Full Name: <form:input path="account_name"/> <br/>
     Email: <form:input path="account_id"/><br/>
     Password: <form:input path="account_password"/>

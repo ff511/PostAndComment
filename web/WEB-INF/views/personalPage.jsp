@@ -12,8 +12,7 @@
 </head>
 <body>
 
-    Hello, ${requestScope.name}
-    Email: ${requestScope.email}
-
+Hello, ${requestScope.name}<br/>
+Email:${requestScope.email}
 </body>
 </html>
