@@ -7,13 +7,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 
 <head>
     <title>show all stuff info</title>
 </head>
 <body>
-sign in ....
+<form action="/Account/logIn" method="post">
+    email:<input type="text" name="email" /><br/>
+    password: <input type="text" name="password" /><br/>
+    <input type="submit" value="go" />
+</form>
 <br/>
 <br/>
 <a href="/Account/signUp">sign up here</a>
