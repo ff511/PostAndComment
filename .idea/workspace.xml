@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c4f0f76-695d-40b0-8186-73cab9fe3e1d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/log4j_1_2_17.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/mybatis_3_4_5.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/log4j-1.2.17.jar" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/mybatis-3.4.5.jar" />
-      <change beforePath="$PROJECT_DIR$/PostAndComment.iml" afterPath="$PROJECT_DIR$/PostAndComment.iml" />
-      <change beforePath="$PROJECT_DIR$/src/com/zzz/mvc/config/db.properties" afterPath="$PROJECT_DIR$/src/com/zzz/mvc/config/db.properties" />
-    </list>
+    <list default="true" id="5c4f0f76-695d-40b0-8186-73cab9fe3e1d" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/zzz/mvc/config/MyBatis/SqlMapConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="5" column="46" lean-forward="true" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+              <caret line="5" column="46" lean-forward="false" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -86,6 +79,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/zzz/mvc/config/db.properties" />
         <option value="$PROJECT_DIR$/src/com/zzz/mvc/config/MyBatis/SqlMapConfig.xml" />
+        <option value="$PROJECT_DIR$/src/Test/Tests.java" />
       </list>
     </option>
   </component>
@@ -340,7 +334,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520631728309</updated>
-      <workItem from="1520631729899" duration="1926000" />
+      <workItem from="1520631729899" duration="2041000" />
     </task>
     <servers />
   </component>
@@ -362,7 +356,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1926000" />
+    <option name="totallyTimeSpent" value="2041000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -438,7 +432,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/zzz/mvc/config/MyBatis/SqlMapConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="46" lean-forward="true" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+          <caret line="5" column="46" lean-forward="false" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
           <folding />
         </state>
       </provider>
