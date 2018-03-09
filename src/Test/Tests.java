@@ -15,7 +15,7 @@ public class Tests {
     @Before
     public void setUp() {
         applicationContext = new ClassPathXmlApplicationContext(
-                "com/zzz/mvc/config/Spring/spring-mybatis-dao.xml");
+                "com/zzz/mvc/config/Spring/applicationContext.xml");
     }
 
     @Test

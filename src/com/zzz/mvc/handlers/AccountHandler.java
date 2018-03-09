@@ -12,31 +12,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/Account")
+@RequestMapping("/Account")
 public class AccountHandler {
-
     private ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-            "com/zzz/mvc/config/Spring/spring-mybatis-dao.xml");
+            "com/zzz/mvc/config/Spring/applicationContext.xml");
 
-    @Autowired
-    private AccountMapper accountMapper;
+    private AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public String register(Account account) {
-        accountMapper = applicationContext.getBean(AccountMapper.class);
+    public String register(Account account){
         accountMapper.addOneAccount(account);
-        return "signInPage";
+        return "redirect:/Account/signIn";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public String goForRegister(Map<String, Object> map) {
-        System.out.println("go fot register");
-        map.put("newAccount", new Account());
+    public String goForSignUp(Map<String, Object> map){
+        map.put("Account", new Account());
         return "signUpPage";
     }
 
-    @RequestMapping("/signIn")
-    public String signIn() {
+    @RequestMapping("signIn")
+    public String signIn(){
+
         return "signInPage";
     }
 }
