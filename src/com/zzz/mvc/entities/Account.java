@@ -1,9 +1,20 @@
 package com.zzz.mvc.entities;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Account {
+
+    @NotEmpty
+    @Email
     private String Account_id;// 用email, required
+
+    @NotEmpty
     private String Account_name;// required
+
+    @NotEmpty
     private String Account_password;//required
+
     private String Account_address;
 
     public String getAccount_id() {

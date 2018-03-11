@@ -5,9 +5,12 @@ import com.zzz.mvc.entities.Account;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -19,7 +22,17 @@ public class AccountHandler {
     private AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public String register(Account account) {
+    public String register(@Valid Account account, BindingResult bindingResult,
+                           Map<String, Object> map) {
+        if(bindingResult.getErrorCount() > 0){
+
+            for(FieldError error : bindingResult.getFieldErrors()){
+                System.out.println(error.getDefaultMessage());
+            }
+            map.put("newAccount", new Account());
+            return "signUpPage";
+        }
+
         accountMapper.addOneAccount(account);
         return "redirect:/Account/zzz";
     }
