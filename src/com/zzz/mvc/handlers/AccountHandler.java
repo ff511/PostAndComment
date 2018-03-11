@@ -49,6 +49,7 @@ public class AccountHandler {
                          Map<String, Object> map) {
         String account_id = account.getAccount_id();
         try {
+            StringBuffer temp = new StringBuffer();
             Account real = accountMapper.queryAccountInfoById(account_id);
             if (real.getAccount_password().equals(account.getAccount_password())) {
                 map.put("name", real.getAccount_name());
