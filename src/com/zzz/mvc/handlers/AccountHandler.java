@@ -24,9 +24,9 @@ public class AccountHandler {
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     public String register(@Valid Account account, BindingResult bindingResult,
                            Map<String, Object> map) {
-        if(bindingResult.getErrorCount() > 0){
+        if (bindingResult.getErrorCount() > 0) {
 
-            for(FieldError error : bindingResult.getFieldErrors()){
+            for (FieldError error : bindingResult.getFieldErrors()) {
                 System.out.println(error.getDefaultMessage());
             }
             map.put("newAccount", new Account());
@@ -45,7 +45,8 @@ public class AccountHandler {
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
-    public String signIn(Account account, Map<String, Object> map) {
+    public String signIn(Account account,
+                         Map<String, Object> map) {
         String account_id = account.getAccount_id();
         try {
             Account real = accountMapper.queryAccountInfoById(account_id);
