@@ -20,7 +20,6 @@
         update Accounts set
         Account_name = #{Account_name},
         Account_password = #{Account_password},
-        Account_id = #{Account_id},
         Account_address = #{Account_address}
         where
         Account_id = #{Account_id}

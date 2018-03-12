@@ -9,17 +9,40 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/Account")
+@SessionAttributes(value = {"current_Account"}, types = {})
 public class AccountHandler {
     private ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
             "com/zzz/mvc/config/Spring/applicationContext.xml");
 
     private AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
+
+    @RequestMapping(value = "/editAccountInfo", method = RequestMethod.POST)
+    public String editInfo(@Valid Account newAccountInfo,
+                           BindingResult bindingResult,
+                           Map<String, Object> map) {
+
+        if(bindingResult.getErrorCount() > 1){
+            return "editAccountPage";
+        }
+        accountMapper.editAccountInfo(newAccountInfo);
+        map.put("name", newAccountInfo.getAccount_name());
+        map.put("email", newAccountInfo.getAccount_id());
+        return "personalPage";
+    }
+
+
+    @RequestMapping(value = "/editAccountInfo", method = RequestMethod.GET)
+    public String goToEditAccountInfo() {
+        return "editAccountPage";
+    }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     public String register(@Valid Account account, BindingResult bindingResult,
@@ -52,8 +75,11 @@ public class AccountHandler {
             StringBuffer temp = new StringBuffer();
             Account real = accountMapper.queryAccountInfoById(account_id);
             if (real.getAccount_password().equals(account.getAccount_password())) {
+
+                String current_Account = new String(real.getAccount_id());
                 map.put("name", real.getAccount_name());
                 map.put("email", real.getAccount_id());
+                map.put("current_Account", current_Account);
                 return "personalPage";
             } else {
                 return "redirect:/Account/zzz";

@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<a href="/Account/editAccountInfo">edit your account info</a><hr/>
 Hello, ${requestScope.name}<br/>
 Email:${requestScope.email}
 </body>
