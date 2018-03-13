@@ -12,8 +12,10 @@
 </head>
 <body>
 <form action="/Account/editAccountInfo" method="post">
-    email: <input name="Account_id" readonly value=${sessionScope.current_Account}>
+    <input type="hidden" name="Account_id" value=${sessionScope.current_Account}>
     <br/>
+
+    email:<input name="Account_email" type="email"/><br/>
     password: <input name="Account_password" type="password"/><br/>
     address:<input name="Account_address" type="text"/> <br/>
     FullName: <input name="Account_name" type="text"/><br/>

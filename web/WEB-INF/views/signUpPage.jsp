@@ -15,7 +15,7 @@
 
 <form:form action="/Account/signUp" method="post" modelAttribute="newAccount">
     Full Name: <form:input path="account_name"/> <br/>
-    Email: <form:input path="account_id"/><br/>
+    Email: <form:input path="account_email"/><br/>
     Password: <form:input path="account_password"/>
     Address: <form:input path="account_address"/>
     <input type="submit" value="submit"/>

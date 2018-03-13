@@ -15,7 +15,7 @@
 </head>
 <body>
 <form:form action="/Account/signIn" method="post" modelAttribute="Account">
-    email:<form:input path="account_id"/><br/>
+    email:<form:input path="account_email"/><br/>
     password: <form:input path="account_password"/><br/>
     <input type="submit" value="go" />
 </form:form>
