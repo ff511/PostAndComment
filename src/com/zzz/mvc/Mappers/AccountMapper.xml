@@ -5,19 +5,27 @@
 
 <mapper namespace="com.zzz.mvc.Mappers.AccountMapper">
 
+    <select id="queryAccountsBySearcher" parameterType="java.lang.String" resultType="Account">
+        SELECT *
+        FROM Accounts
+        WHERE
+        Account_name LIKE #{ss} OR Account_email LIKE #{ss}
+    </select>
+
     <insert id="addOneAccount" parameterType="account">
         INSERT INTO
-        Accounts (Account_id, Account_name, Account_password, Account_address)
+        Accounts (Account_email, Account_name, Account_password, Account_address)
         VALUES
-        (#{Account_id}, #{Account_name},#{Account_password}, #{Account_address})
+        (#{Account_email}, #{Account_name},#{Account_password}, #{Account_address})
     </insert>
 
-    <delete id="deleteOneAccountById" parameterType="java.lang.String">
-        DELETE FROM Accounts WHERE Account_id = #{id}
+    <delete id="deleteOneAccountByEmail" parameterType="java.lang.String">
+        DELETE FROM Accounts WHERE Account_email = #{email}
     </delete>
 
     <update id="editAccountInfo" parameterType="account">
         update Accounts set
+        Account_email = #{Account_email},
         Account_name = #{Account_name},
         Account_password = #{Account_password},
         Account_address = #{Account_address}
@@ -25,8 +33,12 @@
         Account_id = #{Account_id}
     </update>
 
-    <select id="queryAccountInfoById" resultType="account">
-      select * from Accounts where Account_id = #{id}
+    <select id="queryAccountInfoByEmail" resultType="Account">
+      select * from Accounts where Account_email = #{email}
+    </select>
+
+    <select id="queryAccountInfoById" parameterType="int" resultType="Account">
+        select * from Accounts where Account_id = #{value}
     </select>
 
 </mapper>

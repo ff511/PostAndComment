@@ -1,6 +1,7 @@
 package Test;
 
 import com.zzz.mvc.Mappers.AccountMapper;
+import com.zzz.mvc.Mappers.FriendsMapper;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +24,13 @@ public class Tests {
         logger.debug("start debug");
         AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
 
-        System.out.println(accountMapper.queryAccountInfoById("zzztttztzt@126.com"));
+        System.out.println(accountMapper.queryAccountInfoByEmail(
+                "dmxyzlzt@gmail.com"));
+    }
+
+    @Test
+    public void selectAllFriends() {
+        FriendsMapper friendsMapper = applicationContext.getBean(FriendsMapper.class);
+        System.out.println(friendsMapper.selectAllFriendsById(1));
     }
 }

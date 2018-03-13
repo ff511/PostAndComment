@@ -5,9 +5,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class Account {
 
-    @NotEmpty
+    private int Account_id;// not required, autoincreament
+
     @Email
-    private String Account_id;// 用email, required
+    private String Account_email; // required
 
     @NotEmpty
     private String Account_name;// required
@@ -17,11 +18,11 @@ public class Account {
 
     private String Account_address;
 
-    public String getAccount_id() {
+    public int getAccount_id() {
         return Account_id;
     }
 
-    public void setAccount_id(String account_id) {
+    public void setAccount_id(int account_id) {
         Account_id = account_id;
     }
 
@@ -49,10 +50,19 @@ public class Account {
         Account_address = account_address;
     }
 
+    public String getAccount_email() {
+        return Account_email;
+    }
+
+    public void setAccount_email(String account_email) {
+        Account_email = account_email;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
-                "Account_id='" + Account_id + '\'' +
+                "Account_id=" + Account_id +
+                ", Account_email='" + Account_email + '\'' +
                 ", Account_name='" + Account_name + '\'' +
                 ", Account_password='" + Account_password + '\'' +
                 ", Account_address='" + Account_address + '\'' +
