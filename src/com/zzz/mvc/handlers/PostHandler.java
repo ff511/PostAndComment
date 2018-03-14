@@ -1,6 +1,8 @@
 package com.zzz.mvc.handlers;
 
+import com.zzz.mvc.Mappers.CommentMapper;
 import com.zzz.mvc.Mappers.PostMapper;
+import com.zzz.mvc.entities.Comment;
 import com.zzz.mvc.entities.Post;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -8,9 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/PostText")
@@ -21,6 +21,7 @@ public class PostHandler {
     );
 
     private PostMapper postMapper = applicationContext.getBean(PostMapper.class);
+    private CommentMapper commentMapper = applicationContext.getBean(CommentMapper.class);
 
     @RequestMapping(value = "/initNewTopic")
     public String init(Post post,
@@ -41,7 +42,16 @@ public class PostHandler {
     @RequestMapping(value = "/showAllTopics")
     public String showAllPosts(Map<String, Object> map) {
         List<Post> allPosts = postMapper.showAllPosts();
-        map.put("allPosts", allPosts);
+        List<Map<Post, List>> PostAndComment = new ArrayList<>();
+//        这里要写每个主题的所有评论们
+        for (Post p : allPosts) {
+            List<Comment> temp = commentMapper.queryAllCommentUponOnePostById(p.getPost_id());
+            Map<Post, List> eachPair = new HashMap<>();
+            eachPair.put(p, new ArrayList<>(temp));
+            PostAndComment.add(eachPair);
+        }
+
+        map.put("PostAndComment", PostAndComment);
 
         return "/topics";
     }

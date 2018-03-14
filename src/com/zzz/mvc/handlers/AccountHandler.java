@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/Account")
-@SessionAttributes(value = {"current_Account"}, types = {})
+@SessionAttributes(value = {"current_Account_id"}, types = {})
 public class AccountHandler {
     private ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
             "com/zzz/mvc/config/Spring/applicationContext.xml");
@@ -90,11 +90,12 @@ public class AccountHandler {
             Account real = accountMapper.queryAccountInfoByEmail(account_Email);
             if (real.getAccount_password().equals(account.getAccount_password())) {
 
-                Integer current_Account = real.getAccount_id();
+                Account current_Account = real;
                 System.out.println(current_Account);
                 List<Account> allFriends = friendsMapper.selectAllFriendsById(real.getAccount_id());
                 map.put("name", real.getAccount_name());
                 map.put("email", real.getAccount_email());
+                map.put("current_Account_id", real.getAccount_id());
                 map.put("current_Account", current_Account);
                 map.put("friends", allFriends);
 

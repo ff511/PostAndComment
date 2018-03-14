@@ -46,8 +46,8 @@ Email:${requestScope.email}
 </form>
 
 <form action="/PostText/initNewTopic" method="post">
-    <input type="hidden" name="Post_by" value=${requestScope.email}>
-    <input type="text" name="Post_content" />
+    <input type="hidden" name="Post_by" value=${sessionScope.current_Account_id}>
+    <input type="text" name="Post_content"/>
     <input type="submit" value="ok"/>
 </form>
 </body>

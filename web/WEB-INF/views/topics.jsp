@@ -12,15 +12,28 @@
     <title>Title</title>
 </head>
 <body>
-    <c:if test="${empty requestScope.allPosts}">
-        no Post yet
-    </c:if>
+<c:if test="${empty requestScope.PostAndComment}">
+    no Post yet
+</c:if>
 
-<c:if test="${!empty requestScope.allPosts}">
-    <c:forEach items="${requestScope.allPosts}" var="post">
-        <p>${post.post_content} Post by || ${post.post_by}</p><br/>
-        <a href=""> reply </a>
+<c:if test="${!empty requestScope.PostAndComment}">
+    <c:forEach items="${requestScope.PostAndComment}" var="map">
+        <c:forEach items="${map}" var="pac">
+            <p>${pac.key.post_content} Post by || ${pac.key.post_by}</p><br/>
+            <c:forEach items="${pac.value}" var="comment">
+                <p>${comment.comment_content} commented by ${comment.comment_by}</p>
+            </c:forEach>
+            <form action="/Comment/makeNewComment" method="post">
+                <input name="Post_id" type="hidden" value=${pac.key.post_id}>
+                <input name="Comment_by" type="hidden" value=${sessionScope.current_Account_id}>
+                <input name="Comment_content" type="text"/>
+                <input type="submit" value="reply"/>
+            </form>
+        </c:forEach>
+        <hr/>
     </c:forEach>
 </c:if>
+
+
 </body>
 </html>
