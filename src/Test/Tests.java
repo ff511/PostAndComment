@@ -2,13 +2,13 @@ package Test;
 
 import com.zzz.mvc.Mappers.AccountMapper;
 import com.zzz.mvc.Mappers.FriendsMapper;
+import com.zzz.mvc.entities.Account;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Tests {
@@ -38,9 +38,16 @@ public class Tests {
     }
 
     @Test
-    public void testTimeStamp(){
+    public void testTimeStamp() {
         Date a = new Date();
 
         System.out.println(a.toString());
+    }
+
+    @Test
+    public void testGoogleMySqlConnection() {
+        AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
+        Account account = accountMapper.queryAccountInfoByEmail("dmxyzlzt@gmail.com");
+        System.out.println(account);
     }
 }
