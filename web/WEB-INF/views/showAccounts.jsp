@@ -11,6 +11,7 @@
 <head>
     <title>Title</title>
 </head>
+
 <body>
 <c:if test="${empty accounts}">
     no accounts found!
