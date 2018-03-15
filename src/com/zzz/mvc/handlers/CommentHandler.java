@@ -26,6 +26,7 @@ public class CommentHandler {
         comment.setComment_id(UUID.randomUUID().toString());
         comment.setComment_time((new Timestamp(System.currentTimeMillis())).toString());
         commentMapper.makeNewCommentToOnePostById(comment);
-        return "redirect:/PostText/showAllTopics";
+        String Fans_id = comment.getComment_by();
+        return "redirect:/PostText/showAllTopics/" + Fans_id;
     }
 }
