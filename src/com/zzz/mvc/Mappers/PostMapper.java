@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PostMapper {
     void addANewPost(Post post);
+
     List<Post> showAllPosts();
 
+    List<Post> showAllRelatedPosts(Integer Fans_id);
 }

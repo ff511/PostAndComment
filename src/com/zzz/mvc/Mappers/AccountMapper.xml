@@ -5,11 +5,17 @@
 
 <mapper namespace="com.zzz.mvc.Mappers.AccountMapper">
 
-    <select id="queryAccountsBySearcher" parameterType="java.lang.String" resultType="Account">
-        SELECT *
-        FROM Accounts
-        WHERE
-        Account_name LIKE #{ss} OR Account_email LIKE #{ss}
+    <select id="queryAccountsBySearcher" parameterType="FriendSearchVo"
+            resultType="Account">
+        SELECT * FROM Accounts
+        where
+        Account_name like #{Search_pattern} or Account_email like #{Search_pattern}
+        and Account_id
+        not in (
+                select Master_id
+                from Friends
+                where Fans_id = #{Fans_id}
+                )
     </select>
 
     <insert id="addOneAccount" parameterType="account">

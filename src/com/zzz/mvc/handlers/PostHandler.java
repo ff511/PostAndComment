@@ -2,12 +2,15 @@ package com.zzz.mvc.handlers;
 
 import com.zzz.mvc.Mappers.CommentMapper;
 import com.zzz.mvc.Mappers.PostMapper;
+import com.zzz.mvc.Services.PostServices;
 import com.zzz.mvc.entities.Comment;
 import com.zzz.mvc.entities.Post;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -34,15 +37,18 @@ public class PostHandler {
 //        System.out.println("######################=====>#####################");
         System.out.println(post);
         postMapper.addANewPost(post);
-
-
-        return "redirect:/PostText/showAllTopics";
+        String post_by = post.getPost_by();
+        return "redirect:/PostText/showAllTopics/" + post_by;
     }
 
-    @RequestMapping(value = "/showAllTopics")
-    public String showAllPosts(Map<String, Object> map) {
-        List<Post> allPosts = postMapper.showAllPosts();
+    @RequestMapping(value = "/showAllTopics/{Fans_id}")
+    public String showAllRelatedPosts(@PathVariable String Fans_id,
+                                      Map<String, Object> map) {
+        Integer fans_id = Integer.parseInt(Fans_id);
+        PostServices postServices = new PostServices(applicationContext);
+        List<Post> allPosts = postServices.showAllRelatedPosts(fans_id);
         List<Map<Post, List>> PostAndComment = new ArrayList<>();
+
 //        这里要写每个主题的所有评论们
         for (Post p : allPosts) {
             List<Comment> temp = commentMapper.queryAllCommentUponOnePostById(p.getPost_id());

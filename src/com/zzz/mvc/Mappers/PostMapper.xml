@@ -13,6 +13,17 @@
     <select id="showAllPosts" resultType="Post">
         select * from Posts ORDER BY Post_time DESC
     </select>
+
+    <select id="showAllRelatedPosts" parameterType="int" resultType="Post">
+        select * from Posts
+        WHERE Post_by = #{id} OR Post_by in
+        (
+            select Master_id
+            FROM Friends
+            WHERE Fans_id = #{id}
+        )
+        ORDER BY Post_time DESC
+    </select>
 </mapper>
 
         <!-- 在 sqlmapconfig 加载此mapper -->

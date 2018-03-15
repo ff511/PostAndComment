@@ -1,5 +1,6 @@
 package com.zzz.mvc.Mappers;
 
+import com.zzz.mvc.entities.FriendSearchVo;
 import com.zzz.mvc.entities.Account;
 import com.zzz.mvc.exceptions.CanNotAddAccountException;
 import com.zzz.mvc.exceptions.CanNotDeleteAccountException;
@@ -19,5 +20,5 @@ public interface AccountMapper {
 
     Account queryAccountInfoById(Integer Account_id) throws CanNotQueryAccountException;
 
-    List<Account> queryAccountsBySearcher(String ss);
+    List<Account> queryAccountsBySearcher(FriendSearchVo friendSearchVo);
 }

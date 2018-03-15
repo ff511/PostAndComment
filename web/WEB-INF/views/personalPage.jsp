@@ -11,44 +11,68 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        * {
+            font-family: Monaco;
+        }
+    </style>
 </head>
 <body>
-<a href="/Account/editAccountInfo">edit your account info</a>
-<hr/>
-Hello, ${requestScope.name}<br/>
-Email:${requestScope.email}
+<div style="float:left;">
+    <a href="/Account/editAccountInfo">edit</a>
+    Hello, ${requestScope.name}
+    <br/>
+    <br/>
+    <br/>
 
-<hr/>
-<br/>
-<c:if test="${empty requestScope.friends}">
-    you dont have any friends yet
-</c:if>
+    <div>
+        <form action="/PostText/initNewTopic" method="post" style="margin: 0 auto;">
+            <input type="hidden" name="Post_by" value=${sessionScope.current_Account_id}>
+            <textarea type="text" name="Post_content" style="width:650px; height:250px"></textarea>
+            <input type="submit" value="post"/>
+        </form>
+    </div>
 
-<c:if test="${!empty requestScope.friends}">
-    <table>
-        <tr>
-            <th>friend_id</th>
-            <th>operation</th>
-        </tr>
+    <br/>
+    Following List: <br/>
+    <div style="float: left;">
+        <c:if test="${empty requestScope.friends}">
+            none
+        </c:if>
 
-        <c:forEach items="${requestScope.friends}" var="fri">
-            <tr>
-                <td><a href="/Friend/friendSeePage/${fri.account_id}">${fri.account_name}</a></td>
-                <td><a>delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+        <c:if test="${!empty requestScope.friends}">
+            <table>
 
-<form action="/Account/searchAccounts" method="post">
-    <input type="text" name="s"/>
-    <input type="submit" value="search"/>
-</form>
+                <c:forEach items="${requestScope.friends}" var="fri">
+                    <tr>
+                        <td><a href="/Friend/friendSeePage/${fri.account_id}">${fri.account_name}</a></td>
+                        <td>
+                            <form action="/Friend/delete" method="post">
+                                <input name="_method" value="DELETE" type="hidden"/>
+                                <input name="Master_id" type="hidden" value=${fri.account_id}>
+                                <input name="Fans_id" type="hidden" value=${sessionScope.current_Account_id}>
+                                <input type="submit" value="delete"/>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
+    </div>
+    <br/>
+    <br/>
+    + friends<br/>
+    <form action="/Account/searchAccounts" method="post">
+        <input type="text" name="Search_pattern"/>
+        <input type="hidden" name="Fans_id" value=${requestScope.id}>
+        <input type="submit" value="search"/>
+    </form>
+</div>
 
-<form action="/PostText/initNewTopic" method="post">
-    <input type="hidden" name="Post_by" value=${sessionScope.current_Account_id}>
-    <input type="text" name="Post_content"/>
-    <input type="submit" value="ok"/>
-</form>
+<div id="Post_Show_Part" style="float:right;">
+    <a href="/PostText/showAllTopics/${sessionScope.current_Account_id}">
+        all related posts
+    </a>
+</div>
 </body>
 </html>

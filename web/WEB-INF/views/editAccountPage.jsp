@@ -12,7 +12,7 @@
 </head>
 <body>
 <form action="/Account/editAccountInfo" method="post">
-    <input type="hidden" name="Account_id" value=${sessionScope.current_Account}>
+    <input type="hidden" name="Account_id" value=${sessionScope.current_Account_id}>
     <br/>
 
     email:<input name="Account_email" type="email"/><br/>

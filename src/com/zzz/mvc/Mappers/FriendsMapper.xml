@@ -4,15 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zzz.mvc.Mappers.FriendsMapper">
+    <delete id="deleteAMaster" parameterType="MasterAndFan">
+        DELETE
+        FROM Friends
+        WHERE Master_id = #{Master_id} AND Fans_id = #{Fans_id}
+    </delete>
     <select id="selectAllFriendsById" parameterType="java.lang.Integer" resultType="Account">
         select *
         from Accounts
         where Account_id
         IN(
-        select Fans_id as Account_id
+        select Master_id as Account_id
         from Friends
-        where Master_id = #{id}
+        where Fans_id = #{id}
         )
+    </select>
+
+    <insert id="fellowOneAccountByMasterId" parameterType="fellowRequestVo">
+        insert INTO
+        Friends (idFriends, Master_id, Fans_id)
+        VALUES
+        (#{idFriends}, #{Master_id}, #{Fans_id})
+    </insert>
+
+    <select id="selectAllFriendsIds" parameterType="java.lang.Integer" resultType="Integer">
+        SELECT Master_id
+        from Friends
+        WHERE
+        Fans_id = #{Fans_id}
     </select>
 </mapper>
 
