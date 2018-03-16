@@ -2,8 +2,10 @@ package com.zzz.mvc.handlers;
 
 import com.zzz.mvc.Mappers.AccountMapper;
 import com.zzz.mvc.Mappers.CommentMapper;
+import com.zzz.mvc.Mappers.FriendsMapper;
 import com.zzz.mvc.Mappers.PostMapper;
 import com.zzz.mvc.Services.PostServices;
+import com.zzz.mvc.entities.Account;
 import com.zzz.mvc.entities.Comment;
 import com.zzz.mvc.entities.Post;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +28,22 @@ public class PostHandler {
     private PostMapper postMapper = applicationContext.getBean(PostMapper.class);
     private CommentMapper commentMapper = applicationContext.getBean(CommentMapper.class);
     private AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
+    private FriendsMapper friendsMapper = applicationContext.getBean(FriendsMapper.class);
+
+    @RequestMapping(value = "/returnToPersonalPage/{current_Account_id}")
+    public String returnToPersonalPage(
+            @PathVariable Integer current_Account_id,
+            Map<String, Object> map) {
+
+        Account real = accountMapper.queryAccountInfoById(current_Account_id);
+        List<Account> allFriends = friendsMapper.selectAllFriendsById(current_Account_id);
+        map.put("name", real.getAccount_name());
+        map.put("email", real.getAccount_email());
+        map.put("id", real.getAccount_id());
+        map.put("current_Account_id", real.getAccount_id());
+        map.put("friends", allFriends);
+        return "personalPage";
+    }
 
     @RequestMapping(value = "/initNewTopic")
     public String init(Post post,

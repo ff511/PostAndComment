@@ -12,6 +12,8 @@
     <title>Title</title>
 </head>
 <body>
+
+<a href="/PostText/returnToPersonalPage/${sessionScope.current_Account_id}">home</a>
 <c:if test="${empty requestScope.PostAndComment}">
     no Post yet
 </c:if>
