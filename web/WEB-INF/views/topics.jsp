@@ -19,9 +19,13 @@
 <c:if test="${!empty requestScope.PostAndComment}">
     <c:forEach items="${requestScope.PostAndComment}" var="map">
         <c:forEach items="${map}" var="pac">
-            <p>${pac.key.post_content} Post by || ${pac.key.post_by}</p><br/>
+            <p style="font-size:14px;">${pac.key.post_content} Post by
+                <span style="font-style:italic;color:blue">${pac.key.post_by}</span>
+            </p><br/>
             <c:forEach items="${pac.value}" var="comment">
-                <p>${comment.comment_content} commented by ${comment.comment_by}</p>
+                <p style="font-size:12px;">${comment.comment_content} commented by
+                    <span style="font-style:italic;color:cornflowerblue">${comment.comment_by}</span>
+                </p>
             </c:forEach>
             <form action="/Comment/makeNewComment" method="post">
                 <input name="Post_id" type="hidden" value=${pac.key.post_id}>

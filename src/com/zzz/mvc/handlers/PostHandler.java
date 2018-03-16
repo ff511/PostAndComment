@@ -1,5 +1,6 @@
 package com.zzz.mvc.handlers;
 
+import com.zzz.mvc.Mappers.AccountMapper;
 import com.zzz.mvc.Mappers.CommentMapper;
 import com.zzz.mvc.Mappers.PostMapper;
 import com.zzz.mvc.Services.PostServices;
@@ -10,7 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -25,6 +25,7 @@ public class PostHandler {
 
     private PostMapper postMapper = applicationContext.getBean(PostMapper.class);
     private CommentMapper commentMapper = applicationContext.getBean(CommentMapper.class);
+    private AccountMapper accountMapper = applicationContext.getBean(AccountMapper.class);
 
     @RequestMapping(value = "/initNewTopic")
     public String init(Post post,
@@ -52,6 +53,11 @@ public class PostHandler {
 //        这里要写每个主题的所有评论们
         for (Post p : allPosts) {
             List<Comment> temp = commentMapper.queryAllCommentUponOnePostById(p.getPost_id());
+            if (p != null)
+                trans(p);
+            if (temp != null)
+                trans2(temp);
+
             Map<Post, List> eachPair = new HashMap<>();
             eachPair.put(p, new ArrayList<>(temp));
             PostAndComment.add(eachPair);
@@ -60,5 +66,20 @@ public class PostHandler {
         map.put("PostAndComment", PostAndComment);
 
         return "/topics";
+    }
+
+    public void trans(Post post) {
+        Integer Account_id = Integer.valueOf(post.getPost_by());
+        String name = accountMapper.queryAccountInfoById(Account_id).getAccount_name();
+        post.setPost_by(name);
+
+    }
+
+    public void trans2(List<Comment> comments) {
+        for (Comment c : comments) {
+            Integer Account_id = Integer.valueOf(c.getComment_by());
+            String name = accountMapper.queryAccountInfoById(Account_id).getAccount_name();
+            c.setComment_by(name);
+        }
     }
 }
